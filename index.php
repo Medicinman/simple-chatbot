@@ -31,6 +31,37 @@ $botname = $name_end . $name_beginning;
 
 <h1><?= $botname ?></h1>
 
+<?php 
+endif;
+if ($_GET ['search'] == NULL):
+?>
+
+<form>
+	<label for="search">fråga?</label>
+	<input type="text" name="search" id="search">
+	<input type="submit" value="Fråga!">
+	<input type="hidden" name="name" value="<?= $name ?>">
+</form>
+
+
+<?php  
+else:
+$lander = [
+["country" => "Sverige", "capital" => "Stockholm"],
+["country" => "Norge", "capital" => "Oslo"],
+["country" => "Danmark", "capital" => "Köpenhamn"],
+["country" => "Finland", "capital" => "Helsingfors"]
+];
+
+$search = $_GET ['search'];
+for ($i = 0; $i < count($lander); $i++) {
+  if (in_array($search, $lander[$i])) {
+    echo $lander[$i]["capital"] . " är " . $lander[$i]["country"] . "s huvudstad." . "\n";
+  }
+}
+
+?>
+
 <?php endif ?>
 
 </body>
